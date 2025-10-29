@@ -18,5 +18,5 @@ output/
 venv/
 env/
 *.log
-*.csv
-*.png
+**/*.csv
+**/*.png
