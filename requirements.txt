@@ -1,0 +1,55 @@
+# Cross-Docking Terminal Optimization Project
+# Requirements file for all dependencies
+
+# Core Data Processing
+pandas>=2.2.0
+numpy>=1.26.0
+openpyxl>=3.1.0  # For reading Excel files
+
+# Optimization Libraries
+ortools>=9.13.0  # Google OR-Tools for MILP/CP
+pulp>=2.7.0      # Alternative LP/MILP solver
+
+# Simulation Framework
+simpy>=4.1.0     # Discrete-event simulation
+
+# Scientific Computing
+scipy>=1.13.0
+scikit-learn>=1.5.0
+
+# Visualization
+matplotlib>=3.9.0
+seaborn>=0.13.0
+plotly>=5.18.0
+kaleido>=0.2.1   # For static image export from plotly
+
+# Network Analysis (for flow optimization)
+networkx>=3.3
+
+# Jupyter Environment
+jupyter>=1.0.0
+jupyterlab>=4.2.0
+ipywidgets>=8.1.0  # Interactive widgets for notebooks
+
+# Progress Bars and Utilities
+tqdm>=4.66.0
+
+# Configuration Management
+pyyaml>=6.0.1
+python-dotenv>=1.0.0
+
+# Data Validation
+pydantic>=2.5.0
+
+# Testing
+pytest>=8.0.0
+pytest-cov>=4.1.0
+
+# Code Quality
+black>=24.0.0
+flake8>=7.0.0
+mypy>=1.8.0
+
+# Documentation
+sphinx>=7.2.0
+sphinx-rtd-theme>=2.0.0

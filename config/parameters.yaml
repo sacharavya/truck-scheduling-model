@@ -1,0 +1,159 @@
+# Cross-Docking Terminal Operational Parameters
+# Based on Torbali (2023) dataset specifications
+
+# Facility Configuration
+facility:
+  num_inbound_doors: 1
+  num_outbound_doors: 1
+  num_forklifts: 15
+  forklift_speed: 1.0  # meters per second (can be adjusted)
+  staging_area_capacity: 10000  # pallets (effectively unlimited)
+
+# Truck Specifications
+trucks:
+  outbound_truck_capacity: 26  # pallets per truck
+  truck_loading_time_per_pallet: 2  # minutes (typical industry value)
+  truck_unloading_time_per_pallet: 2  # minutes
+  truck_positioning_time: 5  # minutes (dock in/out)
+
+# Pallet Specifications
+pallets:
+  destinations: [1, 2, 3]  # Three delivery zones
+  types: ['A', 'B', 'C']  # Three product categories
+  handling_time: 1.5  # minutes per pallet transfer
+
+# Traffic Levels Configuration
+traffic_levels:
+  H:  # High
+    rate: 156  # pallets per hour
+    interarrival_dist:
+      type: 'triangular'
+      params: [7, 10, 13]  # min, mode, max in minutes
+  M:  # Medium
+    rate: 78  # pallets per hour
+    interarrival_dist:
+      type: 'triangular'
+      params: [17, 20, 23]
+  L:  # Low
+    rate: 39  # pallets per hour
+    interarrival_dist:
+      type: 'triangular'
+      params: [37, 40, 43]
+
+# Scenario Configurations
+scenarios:
+  - name: 'HH_168h'
+    inbound_level: 'H'
+    outbound_level: 'H'
+    inbound_rate: 156
+    outbound_rate: 156
+    avg_inbound_trucks: 1009
+    avg_outbound_trucks: 1013
+    avg_pallets: 26234
+  - name: 'MH_168h'
+    inbound_level: 'M'
+    outbound_level: 'H'
+    inbound_rate: 78
+    outbound_rate: 156
+    avg_inbound_trucks: 506
+    avg_outbound_trucks: 1013
+    avg_pallets: 13156
+  - name: 'MM_168h'
+    inbound_level: 'M'
+    outbound_level: 'M'
+    inbound_rate: 78
+    outbound_rate: 78
+    avg_inbound_trucks: 506
+    avg_outbound_trucks: 505
+    avg_pallets: 13156
+  - name: 'LH_168h'
+    inbound_level: 'L'
+    outbound_level: 'H'
+    inbound_rate: 39
+    outbound_rate: 156
+    avg_inbound_trucks: 253
+    avg_outbound_trucks: 1013
+    avg_pallets: 6578
+  - name: 'LM_168h'
+    inbound_level: 'L'
+    outbound_level: 'M'
+    inbound_rate: 39
+    outbound_rate: 78
+    avg_inbound_trucks: 253
+    avg_outbound_trucks: 505
+    avg_pallets: 6578
+  - name: 'LL_168h'
+    inbound_level: 'L'
+    outbound_level: 'L'
+    inbound_rate: 39
+    outbound_rate: 39
+    avg_inbound_trucks: 253
+    avg_outbound_trucks: 252
+    avg_pallets: 6578
+
+# Simulation Time Horizon
+simulation:
+  duration_hours: 168  # 7 days
+  duration_minutes: 10080
+  warmup_period_hours: 24  # Warm-up period for steady-state
+  time_unit: 'minutes'
+
+# Due Date Generation (from dataset specification)
+due_dates:
+  pallet_offset:
+    type: 'uniform'
+    params: [60, 1440]  # minutes after arrival
+  outbound_truck_offset:
+    type: 'uniform'
+    params: [60, 180]  # minutes after pallet due date
+
+# Optimization Parameters
+optimization:
+  # MILP Solver Settings
+  solver: 'ortools'  # 'ortools' or 'pulp'
+  time_limit_seconds: 300  # 5 minutes per instance
+  mip_gap_tolerance: 0.01  # 1% optimality gap
+  num_threads: 4
+
+  # Objective Function Weights
+  weights:
+    tardiness_penalty: 100  # Cost per minute of tardiness
+    stock_holding_cost: 0.5  # Cost per pallet per minute in staging
+    truck_waiting_cost: 10  # Cost per minute truck waits
+    fill_rate_bonus: 50  # Reward for high fill rates
+
+  # Heuristic Parameters
+  heuristics:
+    max_iterations: 1000
+    tabu_tenure: 10
+    population_size: 50  # For genetic algorithms
+
+# KPI Targets and Thresholds
+kpis:
+  target_fill_rate: 0.95  # 95% truck capacity utilization
+  max_acceptable_late_pallets_pct: 0.05  # 5% tardiness
+  max_stock_level_pallets: 500  # Alert threshold
+  min_door_utilization: 0.80  # 80% door usage
+
+# Data Paths
+data:
+  dataset_root: 'data'
+  instances_per_scenario: 10
+  results_output: 'results'
+  figures_output: 'results/figures'
+  tables_output: 'results/tables'
+  solutions_output: 'results/solutions'
+
+# Logging Configuration
+logging:
+  level: 'INFO'  # DEBUG, INFO, WARNING, ERROR
+  log_file: 'results/simulation.log'
+  console_output: true
+
+# Visualization Settings
+visualization:
+  figure_format: 'png'  # png, svg, pdf
+  figure_dpi: 300
+  style: 'seaborn-v0_8-darkgrid'
+  color_palette: 'Set2'
+  interactive_plots: true  # Use plotly for interactive dashboards

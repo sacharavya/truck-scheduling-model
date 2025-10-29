@@ -1,0 +1,20 @@
+Cross-Docking Terminal Optimization - Implementation Plan.docx
+~$oss-Docking Terminal Optimization - Implementation Plan.docx
+.claude/
+.env
+*.md
+!README.md
+.vscode/
+__pycache__/
+*.pyc
+.DS_Store
+.idea/
+logs/
+data/
+output/
+../__pycache__/
+../*.pyc
+.venv/
+venv/
+env/
+*.log
