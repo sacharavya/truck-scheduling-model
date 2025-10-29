@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for dir in /Users/sacharavya/Desktop/truck-scheduling-model/dataset/*/)",
+      "Bash(do echo \"Directory: $dir\")",
+      "Bash(ls:*)",
+      "Bash(done)",
+      "Bash(python3:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
