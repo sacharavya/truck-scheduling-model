@@ -1,0 +1,9 @@
+,num_inbound_trucks,num_inbound_trucks,num_outbound_trucks,num_outbound_trucks,num_pallets,num_pallets,avg_pallet_due_date,avg_outbound_due_date,simulation_horizon
+,mean,std,mean,std,mean,std,mean,mean,mean
+scenario,,,,,,,,,
+HH_168h,1008.1,4.63,1011.3,5.56,26210.6,120.37,5786.81,5243.82,10077.52
+LH_168h,252.2,0.63,1011.3,5.56,6557.2,16.44,5778.81,5243.82,10077.35
+LL_168h,252.2,0.63,252.2,0.42,6557.2,16.44,5778.81,5240.13,10065.72
+LM_168h,252.2,0.63,504.9,1.73,6557.2,16.44,5778.81,5244.34,10071.94
+MH_168h,504.7,1.42,1011.3,5.56,13122.2,36.87,5785.99,5243.82,10078.13
+MM_168h,504.7,1.42,504.9,1.73,13122.2,36.87,5785.99,5244.34,10074.6
