@@ -48,7 +48,9 @@ class BenchmarkPipeline:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
-        self.loader = DataLoader()
+        # self.loader = DataLoader(dataset_root="../data")
+        project_root = Path(__file__).resolve().parents[1]
+        self.loader = DataLoader(dataset_root=project_root / "data")
         self.calculator = KPICalculator()
 
         # Default algorithm registry
@@ -205,7 +207,7 @@ class BenchmarkPipeline:
 
     def generate_summary_report(self, results_df: pd.DataFrame) -> pd.DataFrame:
         """
-        Generate summary statistics from benchmark results.
+        Generate summary daa from benchmark results.
 
         Args:
             results_df: Results from run_full_benchmark
