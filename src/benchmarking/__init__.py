@@ -1,5 +1,5 @@
-from pathlib import Path
+"""Benchmarking module for cross-docking optimization."""
 
-self.dataset_root = Path(dataset_root)
-if not self.dataset_root.exists():
-    raise FileNotFoundError(f"Dataset root not found: {self.dataset_root}")
+from .pipeline import BenchmarkPipeline
+
+__all__ = ['BenchmarkPipeline']

@@ -49,8 +49,9 @@ class BenchmarkPipeline:
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
         # self.loader = DataLoader(dataset_root="../data")
-        project_root = Path(__file__).resolve().parents[1]
-        self.loader = DataLoader(dataset_root=project_root / "data")
+        # Get project root (2 levels up from src/benchmarking/pipeline.py)
+        project_root = Path(__file__).resolve().parents[2]
+        self.loader = DataLoader(dataset_root=str(project_root / "data"))
         self.calculator = KPICalculator()
 
         # Default algorithm registry
